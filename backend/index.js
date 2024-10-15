@@ -1,8 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
+const questionRouter = require('./routes/questionRoutes');
+
 const app = express();
-const port = 5000;
+
 app.use(cors());
 app.use(express.json());
 app.get('/', (req, res) => {
@@ -28,6 +30,5 @@ app.post('/js', (req, res) => {
         res.status(500).json({ message: "Time Limit Exced or Code having syntax error" });
     }
 })
-app.listen(port, () => {
-    console.log(`Server is Up at ${port}`)
-})
+app.use('/api/questions', questionRouter);
+module.exports = app;
