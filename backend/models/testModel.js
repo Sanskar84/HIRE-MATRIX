@@ -20,16 +20,12 @@ const testSchema = mongoose.Schema({
     type: String,
     unique: true,
   },
-  testUrl: {
-    type: String,
-  },
   Question: {
     type: [
       {
         name: {
           type: String,
           required: [true, 'Please enter question name'],
-          unique: true,
         },
         statement: {
           type: String,
@@ -70,20 +66,37 @@ const testSchema = mongoose.Schema({
       message: 'Please enter a question set',
     },
   },
+  startTime: {
+    type: Date,
+    required: [true, 'Please enter test start time'],
+  },
+  endTime: {
+    type: Date,
+    required: [true, 'Please enter test end time'],
+  },
   duration: {
-    start: {
-      type: Date,
-      required: [true, 'Please enter test start time'],
-    },
-    end: {
-      type: Date,
-      required: [true, 'Please enter test end time'],
-    },
+    type: Number,
+    required: [true, 'Please enter test duration'],
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: [true, 'Please enter user id'],
+  },
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
   },
   createdAt: {
     type: Date,
     default: Date.now(),
   },
+});
+
+testSchema.pre(/^find/, function (next) {
+  this.find({ active: true });
+  next();
 });
 
 const Test = mongoose.model('Test', testSchema);
