@@ -1,24 +1,35 @@
 # HIRE-MATRIX
-This platform enables companies to streamline their hiring process by setting up and managing coding assessments online. Initially, the coding environment supports JavaScript, with plans to incorporate additional programming languages soon.
 
-**Key Features**
-*Company Accounts:* Enables company-specific access and control.
-*Test Creation & Management:* Allows companies to build, organize, and oversee coding tests.
-*JavaScript Coding Interface:* Candidates can solve problems in a dedicated JavaScript editor.
-*Real-Time Evaluation:* Provides instant feedback on code submissions.
-*User Authentication & Authorization:* Ensures secure access and data privacy.
-*Responsive Design:* Optimized for use across different devices.
-**Tech Stack**
-*Frontend:* React.js, HTML/CSS
-*Backend:* Node.js, Express.js
-*Database:* MongoDB
-*Programming Language:* JavaScript (more languages coming soon)
-**How to Use**
-Company Setup: Create a company account on the platform.
-Test Configuration: Build a test, adding questions as needed.
-Candidate Access: Share the unique test link with candidates.
-Assessment: Candidates complete the test, coding directly in the platform.
-Results: Review candidate submissions in real-time.
-**Future Enhancements**
-Additional Languages: Add support for Python, Java, and other popular languages.
-Email Notifications: Integrate email alerts for status updates and test reminders.
+HIRE-MATRIX is an online coding assessment platform built using the MERN stack, designed to streamline technical hiring processes for companies. With HIRE-MATRIX, companies can create coding assessments, invite candidates, and review their performance in real time. Currently, the platform supports coding in JavaScript, with additional languages planned for future releases.
+
+## Key Features
+
+- **Company Accounts**: Enables organizations to create and manage their own accounts, ensuring secure access to test creation and candidate assessment tools.
+- **Test Creation & Management**: Allows companies to create, organize, and manage coding tests tailored to their hiring needs.
+- **JavaScript Coding Interface**: Provides candidates with an integrated JavaScript editor for solving coding challenges.
+- **Real-Time Evaluation**: Offers immediate feedback on code submissions, helping both companies and candidates see results instantly.
+- **User Authentication & Authorization**: Ensures secure login and role-based access control for all users.
+- **Responsive Design**: Built with responsive UI for optimal performance across various devices.
+
+## Tech Stack
+
+- **Frontend**: React.js, HTML/CSS
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Supported Language**: JavaScript (additional languages planned)
+
+## Usage Guide
+
+1. **Company Setup**: Register as a company to access the platform.
+2. **Test Creation**: Set up coding tests by adding questions tailored to your hiring requirements.
+3. **Candidate Invitation**: Share a unique test link with candidates for assessment.
+4. **Assessment**: Candidates code in a dedicated JavaScript editor and submit solutions.
+5. **Real-Time Results**: View and analyze candidate performance as they submit solutions.
+
+## Future Enhancements
+
+- **Multi-Language Support**: Introduce coding environments for Python, Java, and other popular languages.
+- **Email Notifications**: Implement email alerts to notify companies and candidates about test events, updates, and reminders.
+
+---
+
