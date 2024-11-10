@@ -1,33 +1,19 @@
-import { Box, Button, CircularProgress, Link, TextField } from "@mui/material";
+import { Box, Button, Link, TextField } from "@mui/material";
 import React, { useState } from "react";
 import FormLayout from "../Components/Layout/FormLayout";
 import { post } from "../utils/request";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ setisLogin }) => {
   const [form, setform] = useState();
-  const [loadding, setLoading] = useState(false);
-  const navigate = useNavigate()
   const submitHandler = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    console.log(form);
     const resp = await post("/users/signup", form);
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
-      localStorage.setItem("user",JSON.stringify(resp?.data?.user));
-      toast("Your Account has been Created!", {
-        type: "success",
-        position: "top-right",
-      });
-      navigate("/createTest")
     } else {
-      toast("Try after Sometime!", {
-        type: "error",
-        position: "top-right",
-      });
+      alert("Try After Sometime");
     }
-    setLoading(false);
   };
   const formLogger = (e) => {
     setform((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -66,9 +52,8 @@ const SignUp = ({ setisLogin }) => {
           fullWidth
           sx={{ mb: "2rem" }}
         />
-        <Button variant="contained" type="submit" disabled={loadding} fullWidth>
-          {loadding ? "Submitting" : "Submit"}
-          {loadding && <CircularProgress size={24} sx={{ml:"1rem", color:"grey"}}/>}
+        <Button variant="contained" type="submit" fullWidth>
+          Submit
         </Button>
         <Box sx={{ width: "100%", mt: "0.5rem" }}>
           <Link
@@ -86,27 +71,10 @@ const SignUp = ({ setisLogin }) => {
 };
 const Login = ({ setisLogin }) => {
   const [form, setform] = useState();
-  const [loadding, setLoading] = useState(false);
-  const navigate = useNavigate()
   const submitHandler = async (e) => {
     e.preventDefault();
-    setLoading(true);
     const resp = await post("/users/login", form);
-    if (resp.ok) {
-      localStorage.setItem("token", resp.token);
-      localStorage.setItem("user",JSON.stringify(resp?.data?.user));
-      toast("Your Account has been Loggedin!", {
-        type: "success",
-        position: "top-right",
-      });
-      navigate("/createTest")
-    } else {
-      toast(resp.message || "Try after Sometime!", {
-        type: "error",
-        position: "top-right",
-      });
-    }
-    setLoading(false);
+    console.log(resp);
   };
   const formLogger = (e) => {
     setform((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -117,7 +85,7 @@ const Login = ({ setisLogin }) => {
         <TextField
           label="Email"
           type="email"
-          name="email"
+          name="firstname"
           required
           fullWidth
           sx={{ mb: "2rem" }}
@@ -130,9 +98,8 @@ const Login = ({ setisLogin }) => {
           fullWidth
           sx={{ mb: "2rem" }}
         />
-        <Button variant="contained" type="submit" disabled={loadding} fullWidth>
-          {loadding ? "Submitting" : "Submit"}
-          {loadding && <CircularProgress size={24} sx={{ml:"1rem", color:"grey"}}/>}
+        <Button variant="contained" type="submit" fullWidth>
+          Submit
         </Button>
         <Box sx={{ width: "100%", mt: "0.5rem" }}>
           <Link
@@ -153,7 +120,7 @@ const CreatorLogin = () => {
   const [isLogin, setisLogin] = useState(true);
   return (
     <FormLayout
-      image_url={"https://s40424.pcdn.co/in/wp-content/uploads/2022/10/What-is-MBA-in-HR_Human-Resource.jpg.webp"}
+      image_url={"https://source.unsplash.com/random?topics=technology"}
     >
       {isLogin ? (
         <Login setisLogin={setisLogin} />

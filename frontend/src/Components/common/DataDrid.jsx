@@ -9,22 +9,19 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-const SantizationArray = ['[', ']', '{', '}', '(', ')',".",";",'"',"'"]
-const DataGrid = ({ testCases, onSave }) => {
+
+const DataGrid = ({testCases, onSave}) => {
   const [rows, setRows] = useState(testCases);
 
   const handleInputChange = (e, index) => {
-    e.stopPropagation();
     const newRows = [...rows];
-    newRows[index].input = SantizationArray?.reduce((str, char) => str.split(char).join(''), e.target?.value)?.split(",")?.map((item) => item.trim());
-    
+    newRows[index].input = e.target.value;
     setRows(newRows);
   };
 
   const handleOutputChange = (e, index) => {
-    e.stopPropagation();
     const newRows = [...rows];
-    newRows[index].output = SantizationArray?.reduce((str, char) => str.split(char).join(''), e.target?.value)?.split(",")?.map((item) => item.trim());
+    newRows[index].output = e.target.value;
     setRows(newRows);
   };
 
@@ -37,18 +34,10 @@ const DataGrid = ({ testCases, onSave }) => {
   const handleAddRow = () => {
     setRows([...rows, { input: "", output: "" }]);
   };
-
-  const handleSave = () => {
-    onSave(rows.map(row=>{
-      row.input = row.input?.filter((item) => item !== "");
-      row.output = row.output?.filter((item) => item !== "");
-      return row;
-    }));
-  };
+  
 
   return (
-    <Box m={2} mt={1}>
-      <Typography mb={2} variant="body1" color="initial">Note: For multiple values separte values with <i>comma(,)</i></Typography>
+    <Box m={2}>
       <Button
         variant="contained"
         color="primary"
@@ -96,7 +85,7 @@ const DataGrid = ({ testCases, onSave }) => {
           </React.Fragment>
         ))}
       </Grid>
-      <Button variant="text" color="primary" onClick={handleSave}>
+      <Button variant="text" color="primary" onClick={()=>{onSave(rows)}}>
         Save
       </Button>
     </Box>

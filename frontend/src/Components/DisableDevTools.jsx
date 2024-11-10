@@ -6,10 +6,12 @@ const DisableDevTools = ({ children }) => {
     document.onkeydown = function (e) {
       if (e.key === "F12") {
         e.preventDefault();
+        console.log("called");
         return false;
       }
       if (e.key === "Escape") {
         e.preventDefault();
+        console.log("escape");
         return false;
       }
       if (e.ctrlKey && e.shiftKey) {

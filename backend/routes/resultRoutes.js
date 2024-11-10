@@ -8,7 +8,6 @@ router.get(
   authController.protect,
   resultController.getAllMyResults
 );
-
 router.get(
   '/myResults/:id',
   authController.protect,
