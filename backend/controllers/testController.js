@@ -77,13 +77,16 @@ exports.startTest = catchAsync(async (req, res, next) => {
 exports.submitTest = catchAsync(async (req, res, next) => {
   const restultObj = filterObj(req.body, 'name', 'email', 'score');
   // console.log(restultObj);
+
   const candidate = await Result.findOne({
     testID: req.params.id,
     'candidate.email': restultObj.email,
   });
+
   if (candidate) {
     return next(new AppError('You have already submitted the test', 400));
   }
+
   const result = await Result.updateOne(
     { testID: req.params.id },
     { $push: { candidate: restultObj } }
@@ -112,7 +115,6 @@ exports.createTest = catchAsync(async (req, res, next) => {
     testKey: key,
     createdBy: req.user.id,
   });
-
 
   res.status(201).json({
     status: 'success',

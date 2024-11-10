@@ -17,6 +17,7 @@ exports.getAllResults = catchAsync(async (req, res, next) => {
 
 exports.getAllMyResults = catchAsync(async (req, res, next) => {
   const results = await Result.find({ createdBy: req.user.id });
+
   res.status(200).json({
     status: 'success',
     message: 'All Results found',
@@ -25,15 +26,19 @@ exports.getAllMyResults = catchAsync(async (req, res, next) => {
     },
   });
 });
+
 exports.getResult = catchAsync(async (req, res, next) => {
   const test = await Test.findById(req.params.id);
   const result = await Result.findOne({ testID: req.params.id });
+
   if (!result) {
     return next(new AppError('No result found with that ID ', 404));
   }
+
   if (test.createdBy !== req.user.id) {
     return next(new AppError('You are not allowed to view this result', 403));
   }
+
   res.status(200).json({
     status: 'success',
     message: 'Result found',
@@ -42,6 +47,7 @@ exports.getResult = catchAsync(async (req, res, next) => {
     },
   });
 });
+
 exports.getMyResult = catchAsync(async (req, res, next) => {
   const result = await Result.findOne({ testID: req.params.id });
 
