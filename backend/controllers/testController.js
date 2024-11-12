@@ -169,6 +169,7 @@ exports.updateMyTest = catchAsync(async (req, res, next) => {
 
 exports.updateTest = catchAsync(async (req, res, next) => {
   const test = await Test.findByIdAndUpdate(req.params.id, req.body, {
+    
     new: true,
     runValidators: true,
   });
