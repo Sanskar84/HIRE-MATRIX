@@ -6,10 +6,7 @@ dotenv.config({
 const app = require('./index');
 
 // Connect Database
-const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD
-);
+const DB = process.env.DATABASE;
 
 mongoose
   .connect(DB, {
