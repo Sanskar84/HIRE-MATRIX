@@ -87,6 +87,7 @@ exports.submitTest = catchAsync(async (req, res, next) => {
     return next(new AppError('You have already submitted the test', 400));
   }
 
+
   const result = await Result.updateOne(
     { testID: req.params.id },
     { $push: { candidate: restultObj } }
@@ -118,7 +119,7 @@ exports.createTest = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     status: 'success',
-    message: 'Test created successfully',
+    message: 'Test created successfully!',
     data: {
       test: newTest,
     },
@@ -168,6 +169,7 @@ exports.updateMyTest = catchAsync(async (req, res, next) => {
 
 exports.updateTest = catchAsync(async (req, res, next) => {
   const test = await Test.findByIdAndUpdate(req.params.id, req.body, {
+    
     new: true,
     runValidators: true,
   });
